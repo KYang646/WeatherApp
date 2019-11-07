@@ -14,6 +14,8 @@
 		548CE066234D33E600B5177D /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548CE065234D33E600B5177D /* ZipCodeHelper.swift */; };
 		548CE068234D340700B5177D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 548CE067234D340700B5177D /* Assets.xcassets */; };
 		7438290623739F52001026F0 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438290523739F52001026F0 /* WeatherModel.swift */; };
+		743829092373A1AE001026F0 /* DarkSkyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 743829082373A1AE001026F0 /* DarkSkyAPI.swift */; };
+		7438290C2373A380001026F0 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438290B2373A380001026F0 /* AppError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		548CE065234D33E600B5177D /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
 		548CE067234D340700B5177D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7438290523739F52001026F0 /* WeatherModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherModel.swift; sourceTree = "<group>"; };
+		743829082373A1AE001026F0 /* DarkSkyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkSkyAPI.swift; sourceTree = "<group>"; };
+		7438290B2373A380001026F0 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +65,8 @@
 				548CE051234D33B500B5177D /* AppDelegate.swift */,
 				548CE053234D33B500B5177D /* SceneDelegate.swift */,
 				548CE065234D33E600B5177D /* ZipCodeHelper.swift */,
-				7438290523739F52001026F0 /* WeatherModel.swift */,
+				7438290A2373A1B6001026F0 /* Network */,
+				743829072373A19E001026F0 /* Models */,
 				7438290423739F34001026F0 /* ViewControllers */,
 				548CE05C234D33B600B5177D /* LaunchScreen.storyboard */,
 				548CE067234D340700B5177D /* Assets.xcassets */,
@@ -76,6 +81,23 @@
 				548CE055234D33B500B5177D /* ViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		743829072373A19E001026F0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7438290523739F52001026F0 /* WeatherModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7438290A2373A1B6001026F0 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				743829082373A1AE001026F0 /* DarkSkyAPI.swift */,
+				7438290B2373A380001026F0 /* AppError.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,11 +170,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				743829092373A1AE001026F0 /* DarkSkyAPI.swift in Sources */,
 				548CE066234D33E600B5177D /* ZipCodeHelper.swift in Sources */,
 				548CE056234D33B500B5177D /* ViewController.swift in Sources */,
 				548CE052234D33B500B5177D /* AppDelegate.swift in Sources */,
 				548CE054234D33B500B5177D /* SceneDelegate.swift in Sources */,
 				7438290623739F52001026F0 /* WeatherModel.swift in Sources */,
+				7438290C2373A380001026F0 /* AppError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
