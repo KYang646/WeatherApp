@@ -15,7 +15,7 @@ class DarkSkyAPIManager {
     static let shared = DarkSkyAPIManager()
     
     func getForecast(lat: Double, long: Double, completionHandler: @escaping (Result<[WeatherForecast], AppError>) -> Void) {
-        
+        let urlStr = "https://api.darksky.net/forecast/\(Secret.darkSkyAPIKey)"
         
         
     }
