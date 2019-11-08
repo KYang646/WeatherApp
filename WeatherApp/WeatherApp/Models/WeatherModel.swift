@@ -12,7 +12,21 @@ struct WeatherResults : Codable {
     let daily: WeatherWrapper
     
     enum JSONError: Error {
-        
+        case decodingError(Error)
+    }
+    
+    static func getWeatherData() -> [WeatherForecast] {
+        guard let fileName = Bundle.main.path(forResource: "Weather", ofType: "json")
+            else {fatalError()}
+        let fileURL = URL(fileURLWithPath: fileName)
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let weather = try
+                JSONDecoder().decode(WeatherResults.self, from: data)
+            return weather.daily.data
+        } catch {
+            fatalError("\(error)")
+        }
     }
 }
 struct WeatherWrapper : Codable {

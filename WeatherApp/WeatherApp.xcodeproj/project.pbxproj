@@ -18,6 +18,7 @@
 		7440FDA3237615D300B9A264 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7440FDA2237615D300B9A264 /* FavoriteViewController.swift */; };
 		7440FDAB2376177600B9A264 /* WeatherAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7440FDAA2376177600B9A264 /* WeatherAppTests.swift */; };
 		7440FDB3237617ED00B9A264 /* Weather.json in Resources */ = {isa = PBXBuildFile; fileRef = 7440FDB2237617ED00B9A264 /* Weather.json */; };
+		7440FDB4237619DF00B9A264 /* WeatherModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7438290523739F52001026F0 /* WeatherModel.swift */; };
 		7473F1932374D10D00D59827 /* ForecastCoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7473F1922374D10D00D59827 /* ForecastCoViewCell.swift */; };
 		74D4FB6B2374B29200DB6546 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4FB6A2374B29200DB6546 /* NetworkHelper.swift */; };
 		74D4FB6D2374CD0F00DB6546 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4FB6C2374CD0F00DB6546 /* ImageHelper.swift */; };
@@ -274,6 +275,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7440FDB4237619DF00B9A264 /* WeatherModel.swift in Sources */,
 				7440FDAB2376177600B9A264 /* WeatherAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
