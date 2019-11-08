@@ -20,7 +20,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: scene)
         window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
+        
+        let mainVC = ViewController()
+        
+        let favVC = FavoriteViewController()
+        
+        mainVC.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
+        favVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
+        let navController = UINavigationController(rootViewController:mainVC)
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [navController, favVC]
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
     }
+    
+    
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

@@ -8,24 +8,57 @@
 
 import Foundation
 
-struct DarkSkyWeatherModel: Codable {
-    let daily: Weather
+struct WeatherResults : Codable {
+    let daily: WeatherWrapper
+    
+    enum JSONError: Error {
+        
+    }
 }
-
-struct Weather: Codable {
+struct WeatherWrapper : Codable {
     let data: [WeatherForecast]
 }
-
-struct WeatherForecast: Codable {
+struct WeatherForecast : Codable {
     let icon: String
-    let temperatureHigh: Double
-    let temperatureLow: Double
-    let windSpeed: Double
-    let precipIntensityMax: Double
+    let summary: String
     let time: Int
     let sunriseTime: Int
     let sunsetTime: Int
-    //var convertedTime: String {
-        
-    //}
+    let temperatureHigh: Double
+    let temperatureLow: Double
+    let windSpeed: Double
+    let precipProbability: Double
+    var precipitationChance: String {
+        get {
+            return "\(precipProbability * 100)%"
+        }
+    }
+    var date : String {
+        get {
+            let date = NSDate(timeIntervalSince1970: TimeInterval(time)) as Date
+            let df = DateFormatter()
+            df.dateFormat = "MMM-dd-yyyy"
+            return df.string(from:date)
+        }
+    }
+    var realSunRiseTime: String {
+        get {
+            let date = NSDate(timeIntervalSince1970: TimeInterval(sunriseTime)) as Date
+                       let df = DateFormatter()
+                       df.dateFormat = "hh:mm a"
+                       df.amSymbol = "AM"
+                       df.pmSymbol = "PM"
+                       return df.string(from:date)
+        }
+    }
+    var realSunSetTime: String {
+        get {
+            let date = NSDate(timeIntervalSince1970: TimeInterval(sunsetTime)) as Date
+                       let df = DateFormatter()
+                       df.dateFormat = "hh:mm a"
+                       df.amSymbol = "AM"
+                       df.pmSymbol = "PM"
+                       return df.string(from:date)
+        }
+    }
 }
