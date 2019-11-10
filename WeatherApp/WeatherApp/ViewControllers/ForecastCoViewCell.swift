@@ -24,7 +24,7 @@ class ForecastCoViewCell: UICollectionViewCell {
     
     lazy var tempLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -33,8 +33,7 @@ class ForecastCoViewCell: UICollectionViewCell {
         super.init(frame: frame)
         self.backgroundColor = .blue
         addSubViews()
-        //        setForecastCons()
-        setDateLabel()
+        setTheCons()
     }
     
     required init?(coder: NSCoder) {
@@ -48,24 +47,36 @@ class ForecastCoViewCell: UICollectionViewCell {
         self.contentView.addSubview(tempLabel)
     }
     
-    private func setForecastCons() {
+    private func setDateCons() {
         NSLayoutConstraint.activate([
-            
-            
-            
-            
+            dateLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
+            dateLabel.widthAnchor.constraint(equalToConstant: 100),
+            dateLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            dateLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
-        
     }
     
-    private func setDateLabel() {
+    private func setIconCons() {
         NSLayoutConstraint.activate([
-//
-//            dateLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-//            dateLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 5),
-//            dateLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: 5),
-//            dateLabel.heightAnchor.constraint(equalToConstant: 40)
+            forecastImage.topAnchor.constraint(equalTo: dateLabel.bottomAnchor),
+            forecastImage.widthAnchor.constraint(equalToConstant: 100),
+            forecastImage.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            forecastImage.heightAnchor.constraint(equalToConstant: 100),
         ])
-        
+    }
+    
+    private func setTempCons() {
+        NSLayoutConstraint.activate([
+            tempLabel.topAnchor.constraint(equalTo: forecastImage.bottomAnchor, constant: 5),
+            tempLabel.widthAnchor.constraint(equalToConstant: 100),
+            tempLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
+            tempLabel.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    private func setTheCons() {
+        setDateCons()
+        setIconCons()
+        setTempCons()
     }
 }

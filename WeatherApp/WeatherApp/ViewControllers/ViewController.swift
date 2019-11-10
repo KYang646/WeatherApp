@@ -8,14 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController {
     
     private var latitude: Double?
     private var longitude: Double?
     private var locationName: String?
     
-    private var searchString: String = ""{
+    private var zipCode: String = ""{
         didSet {
+            loadLatLongNameFromZip()
+            self.forecastCoView.reloadData()
+            
+            //TODO:- Add userdefaults
         }
         
     }
@@ -60,12 +64,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private var zipCode: String? {
-        didSet {
-            loadLatLongNameFromZip()
-            forecastCoView.isHidden = false
-        }
-    }
+//    private var zipCode: String? {
+//        didSet {
+//            loadLatLongNameFromZip()
+//            forecastCoView.isHidden = false
+//        }
+//    }
     
     private func setCons() {
         setTitleCons()
@@ -80,7 +84,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             forecastCoView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             forecastCoView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             forecastCoView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -5),
-            forecastCoView.heightAnchor.constraint(equalToConstant: 400)
+            forecastCoView.heightAnchor.constraint(equalToConstant: 300)
             
         ])
     }
@@ -125,7 +129,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func loadLatLongNameFromZip(){
-        ZipCodeHelper.getLatLong(fromZipCode: zipCode!, completionHandler: { (result) in
+        ZipCodeHelper.getLatLong(fromZipCode: zipCode, completionHandler: { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let zipData):
@@ -156,7 +160,20 @@ class ViewController: UIViewController, UITextFieldDelegate {
     
 }
 
-
+extension ViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        zipCode = textField.text ?? ""
+        textField.resignFirstResponder()
+        return true
+    }
+    
+//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        let currentText = textField.text ?? ""
+//
+//        return currentText.count <= 5
+//    }
+    
+}
 
 
 
@@ -189,6 +206,6 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 150  , height: 150)
+        return CGSize(width: 250, height: 250)
     }
 }
