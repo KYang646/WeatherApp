@@ -8,11 +8,17 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     
     private var latitude: Double?
     private var longitude: Double?
     private var locationName: String?
+    
+    private var searchString: String = ""{
+        didSet {
+        }
+        
+    }
     
     //MARK: Properties
     lazy var forecastCoView: UICollectionView = {
@@ -27,23 +33,24 @@ class ViewController: UIViewController {
         return coView
     }()
     
-    //    lazy var titleLabel: UILabel = {
-    //        let title = UILabel()
-    //        title.textAlignment = .center
-    //        title.text = "Weather forecast for CITY"
-    //        title.translatesAutoresizingMaskIntoConstraints = false
-    //        return title
-    //    }()
-    //
-    //    lazy var zipCodeTextField: UITextField = {
-    //        let textView = UITextField()
-    //        textView.textAlignment = .center
-    //        textView.borderStyle = .line
-    //        textView.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
-    //        textView.textColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
-    //        //textView.delegate = self
-    //        return textView
-    //    }()
+        lazy var titleLabel: UILabel = {
+            let title = UILabel()
+            title.textAlignment = .center
+            title.textColor = .black
+            title.font = UIFont.systemFont(ofSize: 20)
+            title.text = "Weather forecast for CITY"
+            return title
+        }()
+    
+        lazy var zipCodeTextField: UITextField = {
+            let textField = UITextField()
+            textField.textAlignment = .center
+            textField.borderStyle = .line
+            textField.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
+            textField.textColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+            textField.delegate = self
+            return textField
+        }()
     
     
     
@@ -61,40 +68,48 @@ class ViewController: UIViewController {
     }
     
     private func setCons() {
+        setTitleCons()
         setCoViewCons()
-        view.addSubview(forecastCoView)
-        //setTitleCons()
-        //setTextFieldCons()
+        setTextFieldCons()
     }
     
     //MARK: Constraints
     private func setCoViewCons() {
-        
         forecastCoView.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([
-            forecastCoView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 5),
-            forecastCoView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            forecastCoView.widthAnchor.constraint(equalTo: self.view.widthAnchor, constant: -5),
+            forecastCoView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            forecastCoView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            forecastCoView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -5),
             forecastCoView.heightAnchor.constraint(equalToConstant: 400)
             
         ])
     }
     
-    //    private func constrainImageView(){
-    //            view.addSubview(cityImage)
-    //            cityImage.translatesAutoresizingMaskIntoConstraints = false
-    //            NSLayoutConstraint.activate([
-    //                cityImage.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-    //                cityImage.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: -190),
-    //                cityImage.heightAnchor.constraint(equalToConstant: 365),
-    //                cityImage.widthAnchor.constraint(equalTo: self.view.widthAnchor)
-    //            ])
-    //        }
-    //    Collapse
-    //
-    //
-    //
+    private func setTitleCons() {
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            titleLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            titleLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -30),
+            titleLabel.heightAnchor.constraint(equalToConstant: 40)
+        
+        ])
+    }
+    
+    private func setTextFieldCons() {
+        zipCodeTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            zipCodeTextField.topAnchor.constraint(equalTo: forecastCoView.bottomAnchor, constant: 5),
+            zipCodeTextField.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            zipCodeTextField.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: -200),
+            zipCodeTextField.heightAnchor.constraint(equalToConstant: 45)
+        
+        
+        ])
+        
+        
+    }
+    
     
     private func loadData() {
         WeatherAPIHelper.shared.getWeather(latitude: latitude ?? 98765, longitude: longitude ?? 98765, completionHandler: { (result) in
@@ -128,10 +143,13 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view.addSubview(titleLabel)
         self.view.addSubview(forecastCoView)
+        self.view.addSubview(zipCodeTextField)
         self.view.backgroundColor = .lightGray
+        
         setCons()
-        //self.delegate
+        
         // Do any additional setup after loading the view.
     }
     
