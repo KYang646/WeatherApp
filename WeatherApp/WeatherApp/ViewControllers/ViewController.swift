@@ -163,7 +163,22 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = forecastCoView.dequeueReusableCell(withReuseIdentifier: "forecastCell", for: indexPath) as! ForecastCoViewCell
+        let someWeather = weatherData[indexPath.row]
+        cell.dateLabel.text = someWeather.date
+        
+        //If there is an image in our assets named whatever string someWeather.icon provides, we're able to assign forecastImage.image an image
+        if let imageExists = UIImage(named: someWeather.icon){
+            cell.forecastImage.image = imageExists
+        }else{
+            //Otherwise we're giving it a placeholder image
+            cell.forecastImage.image = UIImage(named: "na")
+        }
+            
+            // cell?.forecastImage.image = UIImage(named: someWeather.icon) ??
+        cell.tempLabel.text = "\(someWeather.temperatureHigh)\n\n\(someWeather.temperatureLow)"
+        
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
