@@ -43,9 +43,8 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-        
+        view.backgroundColor = .gray
+        setDaView()
     }
     
     private func setTitleCon() {
@@ -82,6 +81,17 @@ class DetailViewController: UIViewController {
             textBlob.widthAnchor.constraint(equalToConstant: 350),
             textBlob.heightAnchor.constraint(equalToConstant: 400)
         ])
+    }
+    
+    private func setDaView() {
+        view.addSubview(titleText)
+        view.addSubview(daImage)
+        view.addSubview(conditionLabel)
+        view.addSubview(textBlob)
+        setTitleCon()
+        setImageCon()
+        setCondCon()
+        setDaBlob()
     }
     
 //    private func setDaCons() {
