@@ -9,7 +9,7 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
-
+    
     private var favorites = [Image]() {
         didSet {
             daTable.reloadData()
@@ -20,7 +20,7 @@ class FavoriteViewController: UIViewController {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
         table.backgroundColor = .brown
-        
+        table.register(FavTableViewCell.self, forCellReuseIdentifier: "favCell")
         
         return table
     }()
@@ -34,22 +34,52 @@ class FavoriteViewController: UIViewController {
         ])
     }
     
+    private func loadFaves() {
+        do { favorites = try ImagePersistenceHelper.manager.getPhotos()
+        } catch {
+            print(error)
+        }
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        daTable.delegate = self
+        daTable.dataSource = self
         view.addSubview(daTable)
         setDaTable()
-       
+        
+        loadFaves()
+        
     }
     
 }
 
 extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
+    }
+    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(favorites.count)
         return favorites.count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let cell = daTable.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as? FavTableViewCell
+        let chosenFav = favorites[indexPath.row]
+        let urlString = chosenFav.url
+        ImageHelper.shared.getImage(urlStr: urlString) { (Result) in
+            DispatchQueue.main.async {
+                switch Result {
+                case .success(let imageData):
+                    cell?.favImage.image = imageData
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        }
         
         
         return UITableViewCell()
