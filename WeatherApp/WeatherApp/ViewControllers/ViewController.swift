@@ -206,6 +206,7 @@ extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let newVC = DetailViewController()
         newVC.selectedWeather = weatherData[indexPath.row]
+        newVC.selectedLoc = locationName
         self.navigationController?.pushViewController(newVC, animated: true)
     }
     
