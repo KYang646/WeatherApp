@@ -24,6 +24,7 @@
 		749B078623761DA0002E2AB6 /* PersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B078523761DA0002E2AB6 /* PersistenceHelper.swift */; };
 		749B0789237620B7002E2AB6 /* ImagePersistenceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B0788237620B7002E2AB6 /* ImagePersistenceHelper.swift */; };
 		749B078B2378B31C002E2AB6 /* ImageWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749B078A2378B31C002E2AB6 /* ImageWrapper.swift */; };
+		74AAFB782378DE5B004F4F0F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74AAFB772378DE5B004F4F0F /* DetailViewController.swift */; };
 		74D4FB6B2374B29200DB6546 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4FB6A2374B29200DB6546 /* NetworkHelper.swift */; };
 		74D4FB6D2374CD0F00DB6546 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4FB6C2374CD0F00DB6546 /* ImageHelper.swift */; };
 		74D4FB6F2374CDAD00DB6546 /* ZipCodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D4FB6E2374CDAD00DB6546 /* ZipCodeHelper.swift */; };
@@ -60,6 +61,7 @@
 		749B078523761DA0002E2AB6 /* PersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHelper.swift; sourceTree = "<group>"; };
 		749B0788237620B7002E2AB6 /* ImagePersistenceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePersistenceHelper.swift; sourceTree = "<group>"; };
 		749B078A2378B31C002E2AB6 /* ImageWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWrapper.swift; sourceTree = "<group>"; };
+		74AAFB772378DE5B004F4F0F /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		74D4FB6A2374B29200DB6546 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		74D4FB6C2374CD0F00DB6546 /* ImageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		74D4FB6E2374CDAD00DB6546 /* ZipCodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZipCodeHelper.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				548CE055234D33B500B5177D /* ViewController.swift */,
+				74AAFB772378DE5B004F4F0F /* DetailViewController.swift */,
 				7440FDA2237615D300B9A264 /* FavoriteViewController.swift */,
 				7473F1922374D10D00D59827 /* ForecastCoViewCell.swift */,
 			);
@@ -284,6 +287,7 @@
 				743829092373A1AE001026F0 /* WeatherAPIHelper.swift in Sources */,
 				74D4FB6D2374CD0F00DB6546 /* ImageHelper.swift in Sources */,
 				548CE056234D33B500B5177D /* ViewController.swift in Sources */,
+				74AAFB782378DE5B004F4F0F /* DetailViewController.swift in Sources */,
 				749B0789237620B7002E2AB6 /* ImagePersistenceHelper.swift in Sources */,
 				548CE052234D33B500B5177D /* AppDelegate.swift in Sources */,
 				548CE054234D33B500B5177D /* SceneDelegate.swift in Sources */,

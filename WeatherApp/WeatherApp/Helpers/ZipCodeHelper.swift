@@ -17,7 +17,7 @@ class ZipCodeHelper {
     
     private init() {}
     
-    static func getLatLong(fromZipCode zipCode: String, completionHandler: @escaping (Result<(lat: Double, long: Double,name: String), LocationFetchingError>) -> Void) {
+    static func getLatLong(fromZipCode zipCode: String, completionHandler: @escaping (Result<(lat: Double, long: Double, name: String), LocationFetchingError>) -> Void) {
         let geocoder = CLGeocoder()
         DispatchQueue.global(qos: .userInitiated).async {
             geocoder.geocodeAddressString(zipCode){(placemarks, error) -> Void in

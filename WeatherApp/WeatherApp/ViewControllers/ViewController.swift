@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     private var latitude: Double?
     private var longitude: Double?
     private var locationName: String?
+
     
     private var zipCode: String = ""{
         didSet {
@@ -29,7 +30,7 @@ class ViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let coView = UICollectionView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 300), collectionViewLayout: layout)
-        coView.backgroundColor = .blue
+        coView.backgroundColor = .white
         coView.dataSource = self
         coView.delegate = self
         coView.register(ForecastCoViewCell.self, forCellWithReuseIdentifier: "forecastCell")
@@ -115,13 +116,14 @@ class ViewController: UIViewController {
     }
     
     
-    private func loadData() {
-        WeatherAPIHelper.shared.getWeather(latitude: latitude ?? 98765, longitude: longitude ?? 98765, completionHandler: { (result) in
+    private func loadData(){
+        
+        WeatherAPIHelper.shared.getWeather(latitude: latitude ?? 98765, longitude: longitude ?? 98765 , completionHandler: { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let weatherDataFromOnline):
                     self.weatherData = weatherDataFromOnline
-                    
+
                 case .failure(_): ()
                 }
             }
@@ -134,6 +136,9 @@ class ViewController: UIViewController {
                 switch result {
                 case .success(let zipData):
                     self.locationName = zipData.name
+                    
+                    self.titleLabel.text = "Welcome to \(self.locationName!)"
+                    
                     self.longitude = zipData.long
                     self.latitude = zipData.lat
                     self.loadData()
@@ -193,7 +198,7 @@ extension ViewController: UICollectionViewDataSource {
         }
             
             // cell?.forecastImage.image = UIImage(named: someWeather.icon) ??
-        cell.tempLabel.text = "\(someWeather.temperatureHigh)\n\n\(someWeather.temperatureLow)"
+        cell.tempLabel.text = "High: \(someWeather.temperatureHigh)\nLow: \n\(someWeather.temperatureLow)"
         
         return cell
     }

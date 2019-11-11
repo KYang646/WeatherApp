@@ -31,7 +31,7 @@ class ForecastCoViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .blue
+        self.backgroundColor = .lightGray
         addSubViews()
         setTheCons()
     }
@@ -50,7 +50,7 @@ class ForecastCoViewCell: UICollectionViewCell {
     private func setDateCons() {
         NSLayoutConstraint.activate([
             dateLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            dateLabel.widthAnchor.constraint(equalToConstant: 100),
+            dateLabel.widthAnchor.constraint(equalToConstant: 150),
             dateLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
             dateLabel.heightAnchor.constraint(equalToConstant: 40)
         ])
@@ -68,9 +68,9 @@ class ForecastCoViewCell: UICollectionViewCell {
     private func setTempCons() {
         NSLayoutConstraint.activate([
             tempLabel.topAnchor.constraint(equalTo: forecastImage.bottomAnchor, constant: 5),
-            tempLabel.widthAnchor.constraint(equalToConstant: 100),
+            tempLabel.widthAnchor.constraint(equalToConstant: 150),
             tempLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-            tempLabel.heightAnchor.constraint(equalToConstant: 50)
+            tempLabel.heightAnchor.constraint(equalToConstant: 70)
         ])
     }
     
