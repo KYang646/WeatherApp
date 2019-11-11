@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         didSet {
             loadLatLongNameFromZip()
             self.forecastCoView.reloadData()
-            
+            UserDefaultsWrapper.manager.store(searchString: zipCode)
             //TODO:- Add userdefaults
         }
         
@@ -149,6 +149,13 @@ class ViewController: UIViewController {
         })
     }
     
+    private func setUserDefaults() {
+        if let savedZip = UserDefaultsWrapper.manager.getSearchString() {
+            zipCode = savedZip
+        }
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,7 +163,7 @@ class ViewController: UIViewController {
         self.view.addSubview(forecastCoView)
         self.view.addSubview(zipCodeTextField)
         self.view.backgroundColor = .lightGray
-        
+        setUserDefaults()
         setCons()
         
         // Do any additional setup after loading the view.
