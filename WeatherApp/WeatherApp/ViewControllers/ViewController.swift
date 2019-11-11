@@ -20,7 +20,7 @@ class ViewController: UIViewController {
             loadLatLongNameFromZip()
             self.forecastCoView.reloadData()
             UserDefaultsWrapper.manager.store(searchString: zipCode)
-            //TODO:- Add userdefaults
+            
         }
         
     }

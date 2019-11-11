@@ -12,6 +12,8 @@ class DetailViewController: UIViewController {
 
     var selectedWeather: WeatherForecast!
     var selectedLoc: String! = nil
+    var daLink = String()
+    var imageToSave: Image!
     
     lazy var titleText: UILabel = {
         let title = UILabel()
@@ -48,18 +50,34 @@ class DetailViewController: UIViewController {
         return blob
     }()
     
+    lazy var favButt: UIBarButtonItem = {
+        let butt = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveFunc))
+        
+        return butt // heh heh
+    }()
+    
+    @objc func saveFunc(sender: UIBarButtonItem) {
+        do{
+            try ImagePersistenceHelper.manager.save(newPhoto: imageToSave)
+        }catch{
+            print(error)
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = favButt
         view.backgroundColor = .gray
         setDaView()
-        let daLink = PixabayAPIClient.getSearchResultsURLStr(from: selectedLoc)
+        daLink = PixabayAPIClient.getSearchResultsURLStr(from: selectedLoc)
         PixabayAPIClient.manager.getImage(urlStr: daLink) { (Result) in
             DispatchQueue.main.async {
                 switch Result {
                 case .success(let imageData):
                     if let randomImage = Image.getRandomImage(images: imageData) {
                         self.dataToImage(someImage: randomImage)
+                        self.imageToSave = randomImage
                     }
                 case .failure(let error):
                     print(error)
