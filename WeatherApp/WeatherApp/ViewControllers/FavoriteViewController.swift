@@ -19,7 +19,7 @@ class FavoriteViewController: UIViewController {
     lazy var daTable: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
-        table.backgroundColor = .brown
+        table.backgroundColor = .black
         table.register(FavTableViewCell.self, forCellReuseIdentifier: "favCell")
         
         return table
@@ -48,9 +48,7 @@ class FavoriteViewController: UIViewController {
         daTable.dataSource = self
         view.addSubview(daTable)
         setDaTable()
-        
         loadFaves()
-        
     }
     
 }

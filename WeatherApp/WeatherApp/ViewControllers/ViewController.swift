@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let coView = UICollectionView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 300), collectionViewLayout: layout)
-        coView.backgroundColor = .white
+        coView.backgroundColor = .black
         coView.dataSource = self
         coView.delegate = self
         coView.register(ForecastCoViewCell.self, forCellWithReuseIdentifier: "forecastCell")
@@ -41,7 +41,7 @@ class ViewController: UIViewController {
         lazy var titleLabel: UILabel = {
             let title = UILabel()
             title.textAlignment = .center
-            title.textColor = .black
+            title.textColor = .white
             title.font = UIFont.systemFont(ofSize: 20)
             title.text = "Weather forecast for CITY"
             return title
@@ -51,8 +51,8 @@ class ViewController: UIViewController {
             let textField = UITextField()
             textField.textAlignment = .center
             textField.borderStyle = .line
-            textField.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
-            textField.textColor = #colorLiteral(red: 0.9686274529, green: 0.78039217, blue: 0.3450980484, alpha: 1)
+            textField.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
+            textField.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             textField.delegate = self
             return textField
         }()
@@ -162,7 +162,7 @@ class ViewController: UIViewController {
         self.view.addSubview(titleLabel)
         self.view.addSubview(forecastCoView)
         self.view.addSubview(zipCodeTextField)
-        self.view.backgroundColor = .lightGray
+        self.view.backgroundColor = .black
         setUserDefaults()
         setCons()
         

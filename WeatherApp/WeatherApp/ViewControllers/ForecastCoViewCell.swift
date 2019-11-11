@@ -12,6 +12,7 @@ class ForecastCoViewCell: UICollectionViewCell {
     
     lazy var dateLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -24,6 +25,7 @@ class ForecastCoViewCell: UICollectionViewCell {
     
     lazy var tempLabel: UILabel = {
         let label = UILabel()
+        label.textColor = .white
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -31,7 +33,7 @@ class ForecastCoViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .lightGray
+        self.backgroundColor = .black
         addSubViews()
         setTheCons()
     }

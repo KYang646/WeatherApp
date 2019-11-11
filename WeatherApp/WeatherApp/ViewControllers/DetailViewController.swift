@@ -18,16 +18,16 @@ class DetailViewController: UIViewController {
     lazy var titleText: UILabel = {
         let title = UILabel()
         title.textAlignment = .center
+        title.textColor = .white
         title.text = "Weather forecast for \(selectedLoc!) on \(selectedWeather.date)"
-        title.backgroundColor = .yellow
+        title.backgroundColor = .black
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
     
     lazy var daImage: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .magenta
-        
+        image.backgroundColor = .clear
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
@@ -36,7 +36,8 @@ class DetailViewController: UIViewController {
         let label = UILabel()
         label.text = selectedWeather.summary
         label.textAlignment = .center
-        label.backgroundColor = .cyan
+        label.textColor = .white
+        label.backgroundColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -44,7 +45,8 @@ class DetailViewController: UIViewController {
     lazy var textBlob: UILabel = {
         let blob = UILabel()
         blob.text = "High Temp: \(selectedWeather.temperatureHigh)\nLow Temp: \(selectedWeather.temperatureLow)\nSunrise: \(selectedWeather.sunriseTime)\nSunset: \(selectedWeather.sunsetTime)\nWindspeed: \(selectedWeather.windSpeed)\n Precipitation: \(selectedWeather.precipProbability) "
-        blob.backgroundColor = .green
+        blob.backgroundColor = .black
+        blob.textColor = .yellow
         blob.translatesAutoresizingMaskIntoConstraints = false
         blob.numberOfLines = 0
         return blob
@@ -52,23 +54,29 @@ class DetailViewController: UIViewController {
     
     lazy var favButt: UIBarButtonItem = {
         let butt = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveFunc))
-        
         return butt // heh heh
     }()
     
     @objc func saveFunc(sender: UIBarButtonItem) {
         do{
             try ImagePersistenceHelper.manager.save(newPhoto: imageToSave)
+            let alert = UIAlertController(title: "", message: "Image saved!", preferredStyle: .alert)
+            let cancel = UIAlertAction(title: "Ok", style: .cancel, handler: nil)
+            alert.addAction(cancel)
+            self.present(alert, animated: true)
+            let newVC = FavoriteViewController()
+            UIView.transition(with: view, duration: 1.0, options: [ .transitionCrossDissolve], animations: {
+                self.present(newVC, animated: true, completion: nil)
+            }, completion: nil)
         }catch{
             print(error)
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = favButt
-        view.backgroundColor = .gray
+        view.backgroundColor = .black
         setDaView()
         daLink = PixabayAPIClient.getSearchResultsURLStr(from: selectedLoc)
         PixabayAPIClient.manager.getImage(urlStr: daLink) { (Result) in
@@ -84,7 +92,6 @@ class DetailViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     private func dataToImage(someImage: Image) {
@@ -148,24 +155,4 @@ class DetailViewController: UIViewController {
         setCondCon()
         setDaBlob()
     }
-    
-//    private func setDaCons() {
-//
-//    }()
-    
-/*
-     titleText
-     daImage
-     conditionLabel
-     High
-     Low
-     Sunrise
-     Sunset
-     Windspeed
-     Inches of Precip
-     
-     
-     */
-  
-
 }
