@@ -203,6 +203,12 @@ extension ViewController: UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let newVC = DetailViewController()
+        newVC.selectedWeather = weatherData[indexPath.row]
+        self.navigationController?.pushViewController(newVC, animated: true)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return weatherData.count
     }

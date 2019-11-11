@@ -10,6 +10,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    var selectedWeather: WeatherForecast!
+    
     lazy var titleText: UILabel = {
         let title = UILabel()
         title.backgroundColor = .yellow
