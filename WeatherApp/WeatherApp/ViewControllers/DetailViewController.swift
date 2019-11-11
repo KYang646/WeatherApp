@@ -12,24 +12,29 @@ class DetailViewController: UIViewController {
 
     lazy var titleText: UILabel = {
         let title = UILabel()
+        title.backgroundColor = .yellow
         title.translatesAutoresizingMaskIntoConstraints = false
         return title
     }()
     
     lazy var daImage: UIImageView = {
         let image = UIImageView()
+        image.backgroundColor = .magenta
         return image
     }()
     
     lazy var conditionLabel: UILabel = {
         let label = UILabel()
+        label.backgroundColor = .cyan
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
-    lazy var textBlob: UITextView = {
-        let blob = UITextView()
+    lazy var textBlob: UILabel = {
+        let blob = UILabel()
+        blob.backgroundColor = .green
         blob.translatesAutoresizingMaskIntoConstraints = false
+        blob.numberOfLines = 0
         return blob
     }()
     
@@ -40,6 +45,46 @@ class DetailViewController: UIViewController {
         
         
     }
+    
+    private func setTitleCon() {
+        NSLayoutConstraint.activate([
+            titleText.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
+            titleText.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            titleText.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            titleText.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    private func setImageCon() {
+        NSLayoutConstraint.activate([
+            daImage.topAnchor.constraint(equalTo: titleText.bottomAnchor, constant: 25),
+            daImage.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            daImage.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor),
+            daImage.heightAnchor.constraint(equalToConstant: 500)
+        ])
+    }
+    
+    private func setCondCon() {
+        NSLayoutConstraint.activate([
+            conditionLabel.topAnchor.constraint(equalTo: daImage.bottomAnchor, constant: 5),
+            conditionLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            conditionLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, constant: 200),
+            conditionLabel.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    
+    private func setDaBlob() {
+        NSLayoutConstraint.activate([
+            textBlob.topAnchor.constraint(equalTo: conditionLabel.bottomAnchor, constant: 5),
+            textBlob.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            textBlob.widthAnchor.constraint(equalToConstant: 350),
+            textBlob.heightAnchor.constraint(equalToConstant: 400)
+        ])
+    }
+    
+//    private func setDaCons() {
+//
+//    }()
     
 /*
      titleText
